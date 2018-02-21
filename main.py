@@ -20,8 +20,6 @@ led = Strip(driver)
 @client.event
 async def on_ready():
     print('Logged in as ' + client.user.name)
-    print('-----')
-
 
 @client.event
 async def on_voice_state_update(before, after):
