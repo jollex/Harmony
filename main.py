@@ -1,6 +1,6 @@
 import asyncio
 from bibliopixel.drivers.SPI import SPI
-from bibliopixel import Strip
+from bibliopixel.layout import Strip
 from bibliopixel.drivers.channel_order import ChannelOrder
 import discord
 import logging
@@ -14,7 +14,7 @@ logger.addHandler(handler)
 
 client = discord.Client()
 
-driver = SPI('LPD8806', 24, c_order = ChannelOrder.GRB)
+driver = SPI(ledtype='LPD8806', num=24, c_order=ChannelOrder.GRB)
 led = Strip(driver)
 
 @client.event
