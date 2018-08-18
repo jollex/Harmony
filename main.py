@@ -1,21 +1,16 @@
-import asyncio
-from bibliopixel.drivers.SPI import SPI
-from bibliopixel.layout import Strip
-from bibliopixel.drivers.channel_order import ChannelOrder
 import discord
-import logging
+from raspledstrip.color import Color
+from raspledstrip.ledstrip import LEDStrip
+from raspledstrip.LPD8806 import LPD8806SPI
+
 import secrets
 
-logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
-handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
 
 client = discord.Client()
 
-driver = SPI(ledtype='LPD8806', num=24, c_order=ChannelOrder.GRB)
-led = Strip(driver)
+led_strip = LEDStrip(LPD8806SPI(32))
+led_strip.all_off()
+
 
 @client.event
 async def on_ready():
@@ -34,14 +29,18 @@ async def on_voice_state_update(before, after):
 
         toggle_light(light_on)
 
+
 def is_voice_change(before, after):
     return before.voice.voice_channel != after.voice.voice_channel\
            or before.voice.self_mute != after.voice.self_mute
 
+
 def toggle_light(light_on):
     if light_on:
-        led.fill((209, 36, 44))
+        led_strip.fill(Color(209, 36, 44))
     else:
-        led.fill((0, 0, 0))
+        led_strip.fill(Color(0, 0, 0))
+    led_strip.update()
+
 
 client.run(secrets.user, secrets.pw)
