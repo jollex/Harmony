@@ -16,7 +16,6 @@ led_strip.all_off()
 @client.event
 async def on_ready():
     print('Logged in as ' + client.user.name)
-    print('-----')
 
 
 @client.event
