@@ -27,7 +27,7 @@ async def on_voice_state_update(before, after):
 
 
 def is_voice_change(before, after):
-    return after.id == config.USER_ID \
+    return after.id == client.user.id \
            and (before.voice.voice_channel != after.voice.voice_channel
                 or before.voice.self_mute != after.voice.self_mute)
 
