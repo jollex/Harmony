@@ -9,6 +9,7 @@ import secrets
 client = discord.Client()
 
 led_strip = LEDStrip(LPD8806SPI(32))
+led_strip.set_master_brightness(0.9)
 led_strip.all_off()
 
 
