@@ -1,9 +1,10 @@
 import discord
+
 from raspledstrip.color import Color
 from raspledstrip.ledstrip import LEDStrip
 from raspledstrip.LPD8806 import LPD8806SPI
 
-import secrets
+import config
 
 
 client = discord.Client()
@@ -20,19 +21,17 @@ async def on_ready():
 
 @client.event
 async def on_voice_state_update(before, after):
-    print('Voice state update')
     if is_voice_change(before, after):
         in_channel = after.voice.voice_channel is not None
         muted = after.voice.self_mute
-
         light_on = in_channel and not muted
-
         toggle_light(light_on)
 
 
 def is_voice_change(before, after):
-    return before.voice.voice_channel != after.voice.voice_channel\
-           or before.voice.self_mute != after.voice.self_mute
+    return after.id == config.USER_ID \
+           and (before.voice.voice_channel != after.voice.voice_channel
+                or before.voice.self_mute != after.voice.self_mute)
 
 
 def toggle_light(light_on):
@@ -43,4 +42,4 @@ def toggle_light(light_on):
     led_strip.update()
 
 
-client.run(secrets.user, secrets.pw)
+client.run(config.DISCORD_USER, config.DISCORD_PASSWORD)
