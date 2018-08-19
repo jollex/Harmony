@@ -1,4 +1,4 @@
-# DiscordLight
+# Harmony
 
 DiscordLight is a script that turns on an LED strip when you are in a voice
 channel and not muted. It does this by logging in to your discord account to
