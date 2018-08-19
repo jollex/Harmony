@@ -1,5 +1,5 @@
 .idea
 __pycache__/
+*.pyc
 config.py
-discord.log
 deploy.sh
