@@ -15,16 +15,10 @@ https://learn.adafruit.com/raspberry-pi-spectrum-analyzer-display-on-rgb-led-str
 Install python3 and pip3 and use pip to install the requirements:
 `sudo pip3 install -r requirements.txt`
 
-Next create a file named `config.py` and in it have the following values:
-```python
-DISCORD_USER = "your_discord_user"
-DISCORD_PASSWORD = "your_discord_password"
-USER_ID = "your_discord_user_id"
-```
+Finally, rename `config.example.py` to `config.py` and fill in the appropriate
+values.
 
 You should now be able to run the script with `python3 main.py`
-
-I recommend creating a service to run the script.
 
 ## Credit
 

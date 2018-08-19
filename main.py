@@ -1,15 +1,13 @@
 import discord
 
-from raspledstrip.color import Color
 from raspledstrip.ledstrip import LEDStrip
-from raspledstrip.LPD8806 import LPD8806SPI
 
 import config
 
 
 client = discord.Client()
 
-led_strip = LEDStrip(LPD8806SPI(32))
+led_strip = LEDStrip(config.LED_COUNT)
 led_strip.set_master_brightness(0.9)
 led_strip.all_off()
 
@@ -36,9 +34,9 @@ def is_voice_change(before, after):
 
 def toggle_light(light_on):
     if light_on:
-        led_strip.fill(Color(209, 36, 44))
+        led_strip.fill_rgb(*config.RGB)
     else:
-        led_strip.fill(Color(0, 0, 0))
+        led_strip.fill_off()
     led_strip.update()
 
 
