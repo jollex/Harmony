@@ -20,6 +20,10 @@ values.
 
 You should now be able to run the script with `python3 main.py`
 
+## Disclaimer
+
+I believe logging into a real discord account with a script is against Discord TOS so use at your own risk.
+
 ## Credit
 
 The driver for the LPD8806 LED strip is using code originally from
