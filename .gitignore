@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 config.py
 deploy.sh
+venv/

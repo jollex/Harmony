@@ -7,10 +7,10 @@ import config
 
 
 class User(object):
-    def __init__(self, light, loop, username, password, color):
+    def __init__(self, light, loop, token, color):
         self.light = light
         self.client = discord.Client(loop=loop)
-        loop.run_until_complete(self.client.login(username, password))
+        loop.run_until_complete(self.client.login(token, bot=False))
         self.color = color
 
     async def run(self):
